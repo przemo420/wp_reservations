@@ -7,7 +7,7 @@
  * Requires PHP: 7.2
  */
  
-require_once( 'class_reservations.php' );
+require_once('class_reservations.php');
 
 $reservations = new Reservations();
 

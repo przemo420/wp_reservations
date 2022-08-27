@@ -1,6 +1,6 @@
 <?php if( !defined('ABSPATH') ) die();
 
-require_once( 'class_reservationshelpers.php' );
+require_once('class_reservationshelpers.php');
 
 class Reservations extends ReservationsHelpers {
 	public function __construct() {

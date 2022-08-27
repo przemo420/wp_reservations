@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  wp:
+    container_name: ${COMPOSE_PROJECT_NAME}-wp
+    image: wordpress:latest
+    ports:
+      - "${APP_PORT:-8082}:80"
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DEBUG: true
+    volumes:
+      - ./wp-content/themes:/var/www/html/wp-content/themes
+      - ./wp-content/plugins:/var/www/html/wp-content/plugins
+      - ./wp-content/uploads:/var/www/html/wp-content/uploads
+
+  db:
+    container_name:  ${COMPOSE_PROJECT_NAME}-db
+    image: mysql:latest
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+    volumes:
+      - .docker/database:/var/lib/mysql
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"

@@ -1,0 +1,7 @@
+# ignore all files starting with .
+.*
+/wp-content/
+
+# track this file .gitignore (i.e. do NOT ignore it)
+!.gitignore
+!/wp-content/plugins/kdev_reservations/
